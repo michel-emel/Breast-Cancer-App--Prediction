@@ -160,13 +160,14 @@ def add_prediction(input_data):
     st.subheader("Cell Cluster Prediction")
 
     if prediction == 0:
-        st.write("Begnin")
+        st.success("Prediction: **Benign Tumor**")
     else:
-        st.write("Malecious")
-    
-    st.write("Probability of being benign:", model.predict_proba(input_array_scaled)[0][0])
-    st.write("Probability of being malicious:", model.predict_proba(input_array_scaled)[0][1])
-    st.write("This app can assist medical professional in making, but should not be used as a substitute for ")
+        st.error("Prediction: **Malignant Tumor**")
+
+    st.write(f"🧪 Probability of benign: `{model.predict_proba(input_array_scaled)[0][0]:.2f}`")
+    st.write(f"🧬 Probability of malignant: `{model.predict_proba(input_array_scaled)[0][1]:.2f}`")
+    st.write("This app can assist medical professionals in diagnosis but should not be used as a substitute for expert opinion.")
+
 
 def main():
     st.set_page_config(
@@ -181,8 +182,8 @@ def main():
 
     with st.container():
         st.title("Breast Cancer Predictor")
-        st.write("Please connect this app to your cytology breast cancer form your tissue sample, this ")
-       
+        st.write("Use this app to simulate and analyze breast cancer cell measurements based on cytology data from tissue samples. Adjust the sliders to input measurements and view the predicted diagnosis.")
+
     col1, col2 = st.columns([4, 1])
 
     with col1:
